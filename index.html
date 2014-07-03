@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../bootstrap_v3/docs-assets/ico/favicon.png">
+
+    <title>Regime Type Map</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" type="text/css" href="css/fullmap-template.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-select.css" rel="stylesheet">
+
+    <!-- Bootstrap-map-js -->
+    <link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.9/js/esri/css/esri.css">   
+    <link rel="stylesheet" type="text/css" href="css/bootstrapmap.css">   
+    <style type="text/css">
+      #mapDiv {
+        min-height: 100%; 
+        max-height: 100%; 
+      }
+    </style>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../bootstrap_v3/docs-assets/js/html5shiv.js"></script>
+      <script src="../bootstrap_v3/docs-assets/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Regime Type Map</a>
+		    
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">            
+            <li><a id="about" href="#"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>            
+            <li><a id="geoclusterNav" href="#"><span class="glyphicon glyphicon-cog"></span> Cluster</a></li>                        
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-th-large"></span> Legend</a>
+              <ul id="cntryGrp" class="dropdown-menu" role="menu"></ul>
+            </li>                         
+          </ul>          
+        </div><!--/.nav-collapse -->
+
+      </div>
+    </div>
+    <div class="modal fade" id="aboutModal" style="display: none;" aria-hidden="true">
+      <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                  <h4 class="modal-title">About this site...</h4>
+                </div>
+                <div class="modal-body">The Regime Type Map....</div>
+                <div class="modal-footer"></div>
+            </div>
+      </div>            
+    </div>      
+    <div class="modal fade" id="clusterModal" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                  <h4 class="modal-title">Cluster</h4>
+                </div>
+                <div class="modal-body">                  
+                  <form id="geocluster-form">
+                    <div class="form-group">                      
+                      <select id="dropDownClusterNumber" class="selectpicker" data-width="auto"></select>
+                      <select id="dropDownClusterVar" class="selectpicker" data-width="auto" multiple title='Choose dimensions...' data-selected-text-format="count>3"></select>
+                      <select id="dropDownCountry" class="selectpicker" data-size="5" data-width="auto" multiple title='Choose All Countries' data-selected-text-format="count>5">
+                        <optgroup label="Continent">
+                          <option>Africa</option>
+                          <option>Asia</option>
+                          <option>Europe</option>
+                          <option>North America</option>
+                          <option>Oceania</option>
+                          <option>South America</option>   
+                        </optgroup>                                                                         
+                        <optgroup label="Africa">                                                  
+                          <option>Egypt</option>
+                          <option>Morocco</option>
+                          <option>South Africa</option>
+                          <option>Sudan</option>
+                        </optgroup>
+                        <optgroup label="Asia">                            
+                            <option>Bahrain</option>
+                            <option>China</option>
+                            <option>India</option>
+                            <option>Iran</option>
+                            <option>Iraq</option>
+                            <option>Israel</option>
+                            <option>Japan</option>
+                            <option>Jordan</option>
+                            <option>Kuwait</option>
+                            <option>Oman</option>
+                            <option>Pakistan</option>
+                            <option>Qatar</option>
+                            <option>Russian Federation</option>
+                            <option>Saudi Arabia</option>
+                            <option>Singapore</option>
+                            <option>South Korea</option>
+                            <option>Taiwan</option>
+                            <option>Turkey</option>
+                            <option>United Arab Emirates</option>
+                        </optgroup>
+                        <optgroup label="Europe">                          
+                          <option>Austria</option>
+                          <option>Belgium</option>
+                          <option>Czech Republic</option>
+                          <option>Denmark</option>
+                          <option>Estonia</option>
+                          <option>Finland</option>
+                          <option>France</option>
+                          <option>Germany</option>
+                          <option>Greece</option>
+                          <option>Hungary</option>
+                          <option>Iceland</option>
+                          <option>Ireland</option>
+                          <option>Italy</option>
+                          <option>Luxembourg</option>
+                          <option>Netherlands</option>
+                          <option>Norway</option>
+                          <option>Poland</option>
+                          <option>Portugal</option>
+                          <option>Slovakia</option>
+                          <option>Slovenia</option>
+                          <option>Spain</option>
+                          <option>Sweden</option>
+                          <option>Switzerland</option>
+                          <option>United Kingdom</option>
+                        </optgroup>
+                        <optgroup label="North America">                          
+                          <option>Canada</option>
+                          <option>Costa Rica</option>
+                          <option>Cuba</option>
+                          <option>Jamaica</option>
+                          <option>Mexico</option>
+                          <option>United States of America</option>
+                        </optgroup>
+                        <optgroup label="Oceania">                          
+                          <option>Australia</option>
+                          <option>New Zealand</option>
+                        </optgroup>
+                        <optgroup label="South America">                                                   
+                          <option>Argentina</option>
+                          <option>Bolivia</option>
+                          <option>Brazil</option>
+                          <option>Chile</option>
+                          <option>Colombia</option>
+                          <option>Peru</option>
+                        </optgroup>  
+                      </select>
+                      <br>
+                      <!--<button class="btn ex-enable"><i class="glyphicon glyphicon-ok"></i> Select All</button>-->
+                      <button class="btn ex-disable"><i class="glyphicon glyphicon-remove"></i> Deselect All</button>
+                    </div> 
+                    <button id="btnGeoCluster" type="button" class="btn btn-success" data-dismiss="modal"> Go </button>                    
+                  </form>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+
+    <!-- Bootstrap-map-js -->
+    <div id="mapDiv"><div id ="alert_placeholder"></div></div>
+    <script src="http://js.arcgis.com/3.9compact"></script>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-select.js"></script>
+    <script src="js/cluster_boot.js"></script>
+  </body>
+</html>

@@ -5,7 +5,6 @@ env.scratchWorkspace = env.scratchGDB
 # set the workspace to the db.gdb where the feature dataset are stored
 env.workspace = os.path.join(sys.path[0] + "\\" + "db.gdb")
 
-
 env.workspace = "db.gdb"
 env.overwriteOutput = True
 

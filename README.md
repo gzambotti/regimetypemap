@@ -1,6 +1,6 @@
-regimetypemap
-=============
+Regime Type Map
+===============
 
-This is web map (http://cga-3.hmdc.harvard.edu/migration/regime/new/) built using Bootstrap 3.0, ArcGIS JS 3.9,
+This is web map (http://cga-3.hmdc.harvard.edu/migration/regime/) built using Bootstrap 3.0, ArcGIS JS 3.15,
 and ArcGIS Server. The web map use an ArcGIS Server Geoprocessing service base on the statistical tool Grouping Analysis
-(http://resources.arcgis.com/en/help/main/10.2/index.html#//005p00000051000000). 
+(http://pro.arcgis.com/en/pro-app/tool-reference/spatial-statistics/grouping-analysis.htm). The Grouping Analysis ArcGIS Server Geoprocessing service is created using a python script (scripts/cluster.py) 

@@ -5,8 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="../../bootstrap_v3/docs-assets/ico/favicon.png">
+    <meta name="author" content="">    
 
     <title>Regime Type Map</title>
 
@@ -18,7 +17,7 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap-select.css" rel="stylesheet">
 
     <!-- Bootstrap-map-js -->
-    <link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.9/js/esri/css/esri.css">   
+    <link rel="stylesheet" href="https://js.arcgis.com/3.15/esri/css/esri.css">  
     <link rel="stylesheet" type="text/css" href="css/bootstrapmap.css">   
     <style type="text/css">
       #mapDiv {
@@ -51,10 +50,13 @@
           <ul class="nav navbar-nav">            
             <li><a id="about" href="#"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>            
             <li><a id="geoclusterNav" href="#"><span class="glyphicon glyphicon-cog"></span> Cluster</a></li>                        
+                                     
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-th-large"></span> Legend</a>
               <ul id="cntryGrp" class="dropdown-menu" role="menu"></ul>
-            </li>                         
+            </li>  
           </ul>          
         </div><!--/.nav-collapse -->
 
@@ -83,29 +85,18 @@
                   <form id="geocluster-form">
                     <div class="form-group">                      
                       <select id="dropDownClusterNumber" class="selectpicker" data-width="auto"></select>
-                      <select id="dropDownClusterVar" class="selectpicker" data-width="auto" multiple title='Choose dimensions...' data-selected-text-format="count>3"></select>
+                      <select id="dropDownClusterVar" class="selectpicker" data-width="auto" multiple title='Choose Dimensions...' data-selected-text-format="count>3"></select>
                       <select id="dropDownCountry" class="selectpicker" data-size="5" data-width="auto" multiple title='Choose All Countries' data-selected-text-format="count>5">
-                        <optgroup label="Continent">
-                          <option>Africa</option>
+                        <optgroup label="Continent">                          
                           <option>Asia</option>
                           <option>Europe</option>
                           <option>North America</option>
                           <option>Oceania</option>
                           <option>South America</option>   
-                        </optgroup>                                                                         
-                        <optgroup label="Africa">                                                  
-                          <option>Egypt</option>
-                          <option>Morocco</option>
-                          <option>South Africa</option>
-                          <option>Sudan</option>
                         </optgroup>
                         <optgroup label="Asia">                            
                             <option>Bahrain</option>
-                            <option>China</option>
-                            <option>India</option>
-                            <option>Iran</option>
-                            <option>Iraq</option>
-                            <option>Israel</option>
+                            <option>China</option>                            
                             <option>Japan</option>
                             <option>Jordan</option>
                             <option>Kuwait</option>
@@ -116,31 +107,21 @@
                             <option>Saudi Arabia</option>
                             <option>Singapore</option>
                             <option>South Korea</option>
-                            <option>Taiwan</option>
-                            <option>Turkey</option>
                             <option>United Arab Emirates</option>
                         </optgroup>
                         <optgroup label="Europe">                          
                           <option>Austria</option>
-                          <option>Belgium</option>
-                          <option>Czech Republic</option>
-                          <option>Denmark</option>
-                          <option>Estonia</option>
+                          <option>Belgium</option>                          
+                          <option>Denmark</option>                          
                           <option>Finland</option>
                           <option>France</option>
                           <option>Germany</option>
-                          <option>Greece</option>
-                          <option>Hungary</option>
-                          <option>Iceland</option>
                           <option>Ireland</option>
                           <option>Italy</option>
-                          <option>Luxembourg</option>
                           <option>Netherlands</option>
                           <option>Norway</option>
                           <option>Poland</option>
                           <option>Portugal</option>
-                          <option>Slovakia</option>
-                          <option>Slovenia</option>
                           <option>Spain</option>
                           <option>Sweden</option>
                           <option>Switzerland</option>
@@ -148,9 +129,6 @@
                         </optgroup>
                         <optgroup label="North America">                          
                           <option>Canada</option>
-                          <option>Costa Rica</option>
-                          <option>Cuba</option>
-                          <option>Jamaica</option>
                           <option>Mexico</option>
                           <option>United States of America</option>
                         </optgroup>
@@ -159,11 +137,8 @@
                           <option>New Zealand</option>
                         </optgroup>
                         <optgroup label="South America">                                                   
-                          <option>Argentina</option>
-                          <option>Bolivia</option>
                           <option>Brazil</option>
                           <option>Chile</option>
-                          <option>Colombia</option>
                           <option>Peru</option>
                         </optgroup>  
                       </select>
@@ -180,13 +155,14 @@
 
     <!-- Bootstrap-map-js -->
     <div id="mapDiv"><div id ="alert_placeholder"></div></div>
-    <script src="http://js.arcgis.com/3.9compact"></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://js.arcgis.com/3.15/"></script>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.js"></script>
     <script src="js/bootstrap-select.js"></script>
-    <script src="js/cluster_boot.js"></script>
+    <script src="js/cluster.js"></script>
   </body>
 </html>

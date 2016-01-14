@@ -2,9 +2,9 @@
 $(document).ready(function($) {        
   'use strict';
   
-  var clusterNumber = ['Clusters',2,3,4,5,6,7];        
+  var clusterNumber = ["Clusters",2,3,4,5,6,7];        
   $.each(clusterNumber, function(val, text) {
-    $('#dropDownClusterNumber').append( $('<option>T</option>').val(text).html(text));
+    $('#dropDownClusterNumber').append( $('<option></option>').val(text).html(text));
   });
 
   var clusterField = [['alldimensions','All Dimensions'],['excludefactors','Exclude Demand Factors'],['demscore','Democracy Score'], ['family','Family Admission'], ['gdppc','GDP per capita'], 
@@ -27,7 +27,19 @@ $(document).ready(function($) {
   $('.selectpicker').selectpicker();
   $('.dropdown-toggle').dropdown();
 
+  $('#dropDownClusterNumber').change(function() {
+    if($('#dropDownClusterNumber').val() != 'Clusters'){
+      $('#dropDownClusterNumber option[value="Clusters"]').prop('disabled', true);
+      $('#dropDownClusterVar').prop('disabled', false);
+      $('.selectpicker').selectpicker('refresh');   
+    }
+  });
+  // enable Cluster Dimensions pull down
   $('#dropDownClusterVar').change(function() {
+    if($('#dropDownClusterVar').val() != null){
+      $('#dropDownCountry').prop('disabled', false);
+      $('.selectpicker').selectpicker('refresh');  
+    }
     var clusterVar = $(this).val();
     if (clusterVar == 'alldimensions'){
       clusterVar = ['demscore', 'family', 'gdppc', 'gravity', 'hhi', 'human', 'migrantstock', 'natrate', 'other', 'polscore', 'tempperm', 'top10', 'ur', 'work', 'workaccomp']; 
@@ -130,8 +142,8 @@ require(['esri/map',
     var basemap = new ArcGISTiledMapServiceLayer('http://cga2.cga.harvard.edu/arcgis/rest/services/migration/basemap/MapServer');
     map.addLayer(basemap);
 
-    on(dom.byId('btnGeoCluster'),'click', geoCluster);        
-    
+    on(dom.byId('btnGeoCluster'),'click', geoCluster);
+        
     function geoCluster() {                          
       var gp = new Geoprocessor(gpServiceUrl);
       gp.setOutputSpatialReference({wkid:102100});                
@@ -140,7 +152,7 @@ require(['esri/map',
         'Expression': countryQuery(),
         'Analysis_Fields': fieldQuery()
       };
-      gp.submitJob(params, gpJobComplete, gpJobStatus, gpJobFailed);          
+      gp.submitJob(params, gpJobComplete, gpJobStatus, gpJobFailed);
     }
 
     function gpJobComplete(jobInfo) {
@@ -159,13 +171,7 @@ require(['esri/map',
       }
       
     }
-    // create an object to store the group info result
-    /*function Group() {
-      this.gID;
-      this.gCountry;   
-    }*/
-
-
+    
     function requestSucceededCountry(response) {          
       
       var graphicId = map.graphicsLayerIds;
@@ -182,7 +188,7 @@ require(['esri/map',
       for (var f=0, fl=features.length; f<fl; f++) {
         var feature = features[f];
         //console.log(feature)
-        //var myGroup = new Group();
+        // create an object to store the group info result
         var myGroup = {gID:'',gCountry:''};
         var ss_array = [];
         
@@ -320,7 +326,7 @@ require(['esri/map',
     function fieldQuery(){
        var clusterNumberArray = [];
         $('#dropDownClusterVar option:selected').each(function() {                    
-                clusterNumberArray.push($(this).val());
+          clusterNumberArray.push($(this).val());
         });
         return clusterNumberArray;
     }  

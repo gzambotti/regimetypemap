@@ -1,6 +1,13 @@
 /* code by Giovanni Zambotti - g.zambotti@gmail.com */
 $(document).ready(function($) {        
   'use strict';
+  $('body').on('click', function(event) {
+    var target = $(event.target);
+    if (target.parents('.bootstrap-select').length) {
+      event.stopPropagation();
+      //$('.bootstrap-select.open').removeClass('open');
+    }
+  });
   
   var clusterNumber = ["Clusters",2,3,4,5,6,7];        
   $.each(clusterNumber, function(val, text) {
@@ -36,28 +43,40 @@ $(document).ready(function($) {
   });
   // enable Cluster Dimensions pull down
   $('#dropDownClusterVar').change(function() {
+    var clusterVar = $(this).val();
     if($('#dropDownClusterVar').val() != null){
       $('#dropDownCountry').prop('disabled', false);
       $('.selectpicker').selectpicker('refresh');  
+      if (clusterVar == 'alldimensions'){
+        clusterVar = ['demscore', 'family', 'gdppc', 'gravity', 'hhi', 'human', 'migrantstock', 'natrate', 'other', 'polscore', 'tempperm', 'top10', 'ur', 'work', 'workaccomp']; 
+        $( '#dropDownClusterVar').selectpicker('val',clusterVar);
+        $('#dropDownClusterVar option[value="excludefactors"]').prop('disabled', true);
+        $('#dropDownClusterVar option[value="alldimensions"]').prop('disabled', true);              
+        $('.selectpicker').selectpicker('refresh'); 
+      }
+      if (clusterVar == 'excludefactors'){
+        clusterVar = ['family', 'gravity', 'hhi', 'human', 'migrantstock', 'natrate', 'other', 'polscore', 'tempperm', 'top10', 'work', 'workaccomp']; 
+        $( '#dropDownClusterVar').selectpicker('val',clusterVar);
+        $('#dropDownClusterVar option[value="excludefactors"]').prop('disabled', true);
+        $('#dropDownClusterVar option[value="alldimensions"]').prop('disabled', true);              
+        $('.selectpicker').selectpicker('refresh'); 
+      }
+      if (clusterVar != 'excludefactors' || clusterVar != 'alldimensions'){
+        $('#dropDownClusterVar option[value="excludefactors"]').prop('disabled', true);
+        $('#dropDownClusterVar option[value="alldimensions"]').prop('disabled', true);              
+        $('.selectpicker').selectpicker('refresh');
+      }
     }
-    var clusterVar = $(this).val();
-    if (clusterVar == 'alldimensions'){
-      clusterVar = ['demscore', 'family', 'gdppc', 'gravity', 'hhi', 'human', 'migrantstock', 'natrate', 'other', 'polscore', 'tempperm', 'top10', 'ur', 'work', 'workaccomp']; 
-      $( '#dropDownClusterVar').selectpicker('val',clusterVar);
-      $('#dropDownClusterVar option[value="excludefactors"]').prop('disabled', true);
-      $('#dropDownClusterVar option[value="alldimensions"]').prop('disabled', true);              
-      $('.selectpicker').selectpicker('refresh'); 
+    else{
+      $('#dropDownClusterVar option[value="excludefactors"]').prop('disabled', false);
+      $('#dropDownClusterVar option[value="alldimensions"]').prop('disabled', false);
+      $('#dropDownCountry').prop('disabled', true);              
+      $('.selectpicker').selectpicker('refresh');
     }
-    if (clusterVar == 'excludefactors'){
-      clusterVar = ['family', 'gravity', 'hhi', 'human', 'migrantstock', 'natrate', 'other', 'polscore', 'tempperm', 'top10', 'work', 'workaccomp']; 
-      $( '#dropDownClusterVar').selectpicker('val',clusterVar);
-      $('#dropDownClusterVar option[value="excludefactors"]').prop('disabled', true);
-      $('#dropDownClusterVar option[value="alldimensions"]').prop('disabled', true);              
-      $('.selectpicker').selectpicker('refresh'); 
-    }    
   });              
 
   $('#dropDownCountry').change(function() {
+    if($('#dropDownCountry').val() != null){$('#btnGeoCluster').prop('disabled', false);}
     var countryRegime = $(this).val();
     $(this).find('option:selected').each(function(){
       var newcontinent = $(this).val();            
@@ -98,7 +117,8 @@ $(document).ready(function($) {
   });
 
   $('.ex-disable').click(function() {
-    $('#dropDownCountry').selectpicker('deselectAll');          
+    $('#dropDownCountry').selectpicker('deselectAll');
+    $('#btnGeoCluster').prop('disabled', true);           
   });        
 
   $('#geoclusterNav').click(function(){

@@ -153,13 +153,14 @@ require(['esri/map',
   function(Map, esriRequest, Graphic, FeatureLayer, Geoprocessor, InfoTemplate, GraphicsLayer, graphicsUtils, ArcGISTiledMapServiceLayer, SimpleRenderer, SimpleLineSymbol, SimpleFillSymbol, Color, dom, on, domUtils, BootstrapMap) {
     'use strict';
     
-    var gpServiceUrl = 'http://arcgis-arccgaharvardedu-66613874.us-east-1.elb.amazonaws.com/arcgis/rest/services/regime/cluster/GPServer/cluster';
-    var mapserviceurljob = 'http://arcgis-arccgaharvardedu-66613874.us-east-1.elb.amazonaws.com/arcgis/rest/services/regime/cluster/GPServer/cluster/jobs';
+    var gpServiceUrl = 'http://140.247.114.63/arcgis/rest/services/test/ctest/GPServer/cluster';
+    var mapserviceurljob = 'http://140.247.114.63/arcgis/rest/services/test/ctest/GPServer/cluster/jobs';
+
     var infoTemplate = new InfoTemplate();        
     
     var map = BootstrapMap.create('mapDiv',{center: [1, 30],zoom: 3});
     
-    var basemap = new ArcGISTiledMapServiceLayer('http://cga2.cga.harvard.edu/arcgis/rest/services/migration/basemap/MapServer');
+    var basemap = new ArcGISTiledMapServiceLayer('http://cga-app01.cadm.harvard.edu/arcgis/rest/services/crossroadofmigration/basemapocean/MapServer');
     map.addLayer(basemap);
 
     on(dom.byId('btnGeoCluster'),'click', geoCluster);

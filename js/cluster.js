@@ -160,7 +160,7 @@ require(['esri/map',
     
     var map = BootstrapMap.create('mapDiv',{center: [1, 30],zoom: 3});
     
-    var basemap = new ArcGISTiledMapServiceLayer('http://cga-app01.cadm.harvard.edu/arcgis/rest/services/crossroadofmigration/basemapocean/MapServer');
+    var basemap = new ArcGISTiledMapServiceLayer('https://cga-app01.cadm.harvard.edu/arcgis/rest/services/crossroadofmigration/basemapocean/MapServer');
     map.addLayer(basemap);
 
     on(dom.byId('btnGeoCluster'),'click', geoCluster);

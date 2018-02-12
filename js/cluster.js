@@ -153,8 +153,8 @@ require(['esri/map',
   function(Map, esriRequest, Graphic, FeatureLayer, Geoprocessor, InfoTemplate, GraphicsLayer, graphicsUtils, ArcGISTiledMapServiceLayer, SimpleRenderer, SimpleLineSymbol, SimpleFillSymbol, Color, dom, on, domUtils, BootstrapMap) {
     'use strict';
     
-    var gpServiceUrl = 'http://140.247.114.63/arcgis/rest/services/test/ctest/GPServer/cluster';
-    var mapserviceurljob = 'http://140.247.114.63/arcgis/rest/services/test/ctest/GPServer/cluster/jobs';
+    var gpServiceUrl = 'https://hfgis.fas.harvard.edu/arcgis/rest/services/test/cmodel/GPServer/cluster';
+    var mapserviceurljob = 'https://hfgis.fas.harvard.edu/arcgis/rest/services/test/cmodel/GPServer/cluster/jobs';
 
     var infoTemplate = new InfoTemplate();        
     
